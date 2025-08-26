@@ -18,7 +18,7 @@ export default function AuthLayout({ headerText, description, children }) {
             <path d='M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3' />
           </svg>
           <h1 className='text-xl font-medium text-background'>
-            Develop by{' '}
+            Developed by{' '}
             <a className='text-chart-1 hover:border-b border-chart-1' href='https://yaseen-dev.vercel.app'>
               Mohammad Yaseen
             </a>

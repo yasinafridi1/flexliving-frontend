@@ -10,7 +10,7 @@ import { forceLogout, setUserLogin } from '@redux/slice/authSlice';
 function App() {
   let Once = true;
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function checkLogin() {
     return;
