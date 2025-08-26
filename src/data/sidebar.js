@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, Users, Truck, PackageOpen, Boxes } from 'lucide-react';
+import { LayoutDashboard, MessageCircle, Link } from 'lucide-react';
 
 export const sidebarData = {
   navGroups: [
@@ -9,6 +9,16 @@ export const sidebarData = {
           title: 'Dashboard',
           url: '/',
           icon: LayoutDashboard
+        },
+        {
+          title: 'Reviews',
+          url: '/reviews',
+          icon: MessageCircle
+        },
+        {
+          title: 'Integration',
+          url: '/integration',
+          icon: Link
         }
       ]
     }

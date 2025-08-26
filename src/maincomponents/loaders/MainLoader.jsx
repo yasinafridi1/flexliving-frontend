@@ -1,5 +1,5 @@
 import React from 'react';
-import logoFull from '@assets/sufyanfull.png';
+import logoFull from '@assets/logo.webp';
 
 const MainLoader = () => {
   return (

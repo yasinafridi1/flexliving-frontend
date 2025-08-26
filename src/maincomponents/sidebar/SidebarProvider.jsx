@@ -87,7 +87,7 @@ function SidebarProvider({
             '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
             ...style
           }}
-          className={cn('group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full', className)}
+          className={cn(' group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full', className)}
           {...props}
         >
           {children}
@@ -145,7 +145,7 @@ function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'offcanvas'
       <div
         data-slot='sidebar-gap'
         className={cn(
-          'relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
+          ' relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear',
           'group-data-[collapsible=offcanvas]:w-0',
           'group-data-[side=right]:rotate-180',
           variant === 'floating' || variant === 'inset'
@@ -156,7 +156,7 @@ function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'offcanvas'
       <div
         data-slot='sidebar-container'
         className={cn(
-          'fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
+          'bg-primary fixed inset-y-0 z-10 hidden h-svh w-(--sidebar-width) transition-[left,right,width] duration-200 ease-linear md:flex',
           side === 'left'
             ? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
             : 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
@@ -170,7 +170,7 @@ function Sidebar({ side = 'left', variant = 'sidebar', collapsible = 'offcanvas'
         <div
           data-sidebar='sidebar'
           data-slot='sidebar-inner'
-          className='bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm'
+          className='bg-primary group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg '
         >
           {children}
         </div>
@@ -256,7 +256,7 @@ function SidebarHeader({ className, ...props }) {
     <div
       data-slot='sidebar-header'
       data-sidebar='header'
-      className={cn('flex flex-col gap-2 p-2', className)}
+      className={cn('bg-primary flex flex-col gap-2 p-2', className)}
       {...props}
     />
   );
@@ -267,7 +267,7 @@ function SidebarFooter({ className, ...props }) {
     <div
       data-slot='sidebar-footer'
       data-sidebar='footer'
-      className={cn('flex flex-col gap-2 p-2', className)}
+      className={cn('bg-primary flex flex-col gap-2 p-2', className)}
       {...props}
     />
   );
@@ -279,7 +279,7 @@ function SidebarContent({ className, ...props }) {
       data-slot='sidebar-content'
       data-sidebar='content'
       className={cn(
-        'flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
+        'bg-primary flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden',
         className
       )}
       {...props}
@@ -292,7 +292,7 @@ function SidebarGroup({ className, ...props }) {
     <div
       data-slot='sidebar-group'
       data-sidebar='group'
-      className={cn('relative flex w-full min-w-0 flex-col p-2', className)}
+      className={cn(' relative flex w-full min-w-0 flex-col p-2', className)}
       {...props}
     />
   );

@@ -10,7 +10,7 @@ import {
 import { NavGroup } from '@maincomponents/sidebar/NavGroup';
 import { NavUser } from '@maincomponents/sidebar/NavUser';
 import { sidebarData } from '@data/sidebar';
-import logo from '@assets/logo.png';
+import logo from '@assets/logo.webp';
 
 function AppSidebar({ ...props }) {
   return (
