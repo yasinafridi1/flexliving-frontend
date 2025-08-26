@@ -5,6 +5,7 @@ import RedirectRoute from '@routes/RedirectRoutes';
 import DashboardLayout from '@layouts/DashboardLayout';
 import Integration from '@pages/private/Integration.jsx';
 import Review from '@pages/private/Review';
+import Profile from '@pages/private/Profile';
 
 export default createBrowserRouter([
   {
@@ -38,6 +39,10 @@ export default createBrowserRouter([
       {
         path: '/reviews',
         element: <Review />
+      },
+      {
+        path: '/profile',
+        element: <Profile />
       }
     ]
   }
