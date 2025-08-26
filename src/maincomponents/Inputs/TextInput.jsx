@@ -4,7 +4,7 @@ import React from 'react';
 
 const TextInput = ({ label, placeHolder, type, field }) => {
   return (
-    <FormItem>
+    <FormItem className={'w-full'}>
       <FormLabel>{label}</FormLabel>
       <FormControl>
         <Input type={type} placeholder={placeHolder} {...field} />

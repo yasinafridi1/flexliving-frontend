@@ -12,7 +12,10 @@ const authSlice = createSlice({
     data: {
       fullName: 'Mohammad Yaseen',
       email: 'mohammad.yaseen@example.com',
-      role: 'SUPER_ADMIN'
+      role: 'SUPER_ADMIN',
+      clientId: null,
+      clientSecret: '***********************************************asgga',
+      hostAwayConnection: '***********************************************asgga'
     },
     error: null
   },
