@@ -35,9 +35,6 @@ export function NavGroup({ title, items }) {
       {/* <SidebarGroupLabel>{title}</SidebarGroupLabel> */}
       <SidebarMenu>
         {items.map(item => {
-          if (data.role !== 'SUPER_ADMIN' && MANAGER_PROHIBBETED_ROUTES.includes(item.title)) {
-            return null;
-          }
           const key = `${item.title}-${item.url}`;
 
           if (!item.items) return <SidebarMenuLink key={key} item={item} href={href} />;

@@ -13,7 +13,6 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   async function checkLogin() {
-    return;
     try {
       setLoading(true);
       const data = await checkSession();

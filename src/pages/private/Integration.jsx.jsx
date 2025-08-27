@@ -6,12 +6,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { apiKeysSchema } from '@validations/index';
 import { Form, FormField } from '@maincomponents/components/ui/form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoaderButton from '@maincomponents/loaders/LoaderButton';
 import LoaderButtonDelete from '@maincomponents/loaders/LoaderButtonDelete';
+import { addUpdateHostAwayKeys, authenticateHostaway } from '@redux/slice/authSlice';
 
 const Integration = () => {
-  const { data } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+  const { data, loading } = useSelector(state => state.auth);
 
   const form = useForm({
     resolver: yupResolver(apiKeysSchema),
@@ -22,7 +24,13 @@ const Integration = () => {
     }
   });
 
-  async function onSubmit(values) {}
+  async function onSubmit(values) {
+    await dispatch(addUpdateHostAwayKeys(values));
+  }
+
+  async function connectToHostaway() {
+    await await dispatch(authenticateHostaway());
+  }
 
   useEffect(() => {
     const { clientId, clientSecret } = data;
@@ -48,32 +56,35 @@ const Integration = () => {
             </div>
 
             {/* Right Button */}
-            {data?.clientId ? (
+            {data?.clientId && !data?.hostAwayConnection ? (
               <div className='flex'>
                 <LoaderButton
                   btnText='Connect'
                   loaderText='Connectting...'
-                  loading={form.formState.isSubmitting}
-                  type='submit'
+                  loading={loading}
+                  type='button'
                   className='w-full'
-                  btn
+                  onClick={connectToHostaway}
                 />
               </div>
-            ) : data?.hostAwayConnection ? (
+            ) : data?.clientId && data?.hostAwayConnection ? (
               <div className='flex'>
                 <LoaderButtonDelete
                   btnText='Revoke Token'
                   loaderText='Revoking...'
-                  loading={form.formState.isSubmitting}
+                  loading={loading}
                   type='submit'
                   className='w-full'
-                  btn
                 />
               </div>
             ) : null}
           </CardHeader>
 
           <CardContent>
+            <p className='text-chart-1'>
+              Add/Update both keys required. If you want to update the client Id you must have to enter the client
+              secret also.
+            </p>
             <div className={`transition-all duration-300 ease-in-out overflow-hidden`}>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col items-center gap-5 mt-4'>
@@ -95,10 +106,9 @@ const Integration = () => {
                     <LoaderButton
                       btnText='Submit'
                       loaderText='Submitting...'
-                      loading={form.formState.isSubmitting}
+                      loading={form?.formState?.isSubmitting}
                       type='submit'
                       className='w-full'
-                      btn
                     />
                   </div>
                 </form>
