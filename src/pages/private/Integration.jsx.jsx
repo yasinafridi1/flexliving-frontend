@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Card, CardContent, CardHeader } from '@maincomponents/components/ui/card';
-import hostawaylogo from '@assets/hostawaylogo.svg';
+import hostawaylogo from '@assets/hostawayLogo.svg';
 import TextInput from '@maincomponents/Inputs/TextInput';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
