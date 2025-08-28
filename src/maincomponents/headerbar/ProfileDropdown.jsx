@@ -26,7 +26,10 @@ export function ProfileDropdown() {
       <DropdownMenuTrigger asChild>
         <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
           <Avatar className='h-8 w-8'>
-            <AvatarImage src={user?.avatar} alt={user?.fullName} />
+            <AvatarImage
+              src={user?.profilePicture && `${import.meta.env.VITE_API_FILE_URL}/${user?.profilePicture}`}
+              alt={user?.fullName}
+            />
             <AvatarFallback>{user?.fullName.slice(0, 2)}</AvatarFallback>
           </Avatar>
         </Button>

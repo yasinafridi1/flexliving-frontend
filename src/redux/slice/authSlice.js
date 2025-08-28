@@ -1,9 +1,17 @@
-import { connectHostaway, createUpdateHostawayKeys, disconnectHostaway, login, logout } from '@redux/actions/auth';
+import {
+  connectHostaway,
+  createUpdateHostawayKeys,
+  disconnectHostaway,
+  login,
+  logout,
+  updateUser
+} from '@redux/actions/auth';
 import { createSlice } from '@reduxjs/toolkit';
 import asyncThunkRequest from '@utils/asyncThunkRequest';
 
 export const signIn = asyncThunkRequest('auth/signin', body => login(body));
 export const userLogout = asyncThunkRequest('auth/logout', logout);
+export const editUser = asyncThunkRequest('auth/updateUser', body => updateUser(body));
 export const addUpdateHostAwayKeys = asyncThunkRequest('auth/addUpdateHostAwayKeys', body =>
   createUpdateHostawayKeys(body)
 );
@@ -74,6 +82,14 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(removeHostawayToken.rejected, (state, { payload, error }) => {
+        state.loading = false;
+        state.error = payload || error?.message || 'Something went wrong';
+      })
+      .addCase(editUser.fulfilled, (state, { payload }) => {
+        state.data = payload.userData;
+        state.error = null;
+      })
+      .addCase(editUser.rejected, (state, { payload, error }) => {
         state.loading = false;
         state.error = payload || error?.message || 'Something went wrong';
       });
