@@ -3,15 +3,14 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle
 } from '@maincomponents/components/ui/dialog';
-import { cn } from '@maincomponents/lib/utils';
 import LoaderButton from '@maincomponents/loaders/LoaderButton';
-import React from 'react';
 
-const AddEditBaseModal = ({ open, onClose, title, onSubmit, isLoading, isShowSubmit = true, children }) => {
+const BaseAlertModal = ({ title, message, onClose, onSubmit, open, isLoading }) => {
   function onOpenChange() {
     if (isLoading) {
       return;
@@ -21,22 +20,23 @@ const AddEditBaseModal = ({ open, onClose, title, onSubmit, isLoading, isShowSub
   }
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className='w-[90%] sm:w-[75%] md:w-[60%] lg:w-1/2 xl:w-[40%] max-w-[600px] max-h-[90vh] overflow-y-auto'>
+      <DialogContent className='sm:max-w-md'>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{message}</DialogDescription>
         </DialogHeader>
-        {children}
-        <DialogFooter className={cn('grid gap-3', isShowSubmit ? 'grid-cols-2' : 'grid-cols-1')}>
+
+        <DialogFooter className='grid grid-cols-2 gap-3'>
           <DialogClose asChild>
             <Button className='flex-grow' disabled={isLoading} variant='outline'>
               Cancel
             </Button>
           </DialogClose>
-          {isShowSubmit ? <LoaderButton type='button' btnText='Submit' onClick={onSubmit} loading={isLoading} /> : null}
+          <LoaderButton loading={isLoading} onClick={onSubmit} btnText={'Submit'} type='button' />
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
 };
 
-export default AddEditBaseModal;
+export default BaseAlertModal;

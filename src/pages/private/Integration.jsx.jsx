@@ -9,7 +9,7 @@ import { Form, FormField } from '@maincomponents/components/ui/form';
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderButton from '@maincomponents/loaders/LoaderButton';
 import LoaderButtonDelete from '@maincomponents/loaders/LoaderButtonDelete';
-import { addUpdateHostAwayKeys, authenticateHostaway } from '@redux/slice/authSlice';
+import { addUpdateHostAwayKeys, authenticateHostaway, removeHostawayToken } from '@redux/slice/authSlice';
 
 const Integration = () => {
   const dispatch = useDispatch();
@@ -30,6 +30,10 @@ const Integration = () => {
 
   async function connectToHostaway() {
     await await dispatch(authenticateHostaway());
+  }
+
+  async function deleteToken() {
+    await dispatch(removeHostawayToken());
   }
 
   useEffect(() => {
@@ -75,6 +79,7 @@ const Integration = () => {
                   loading={loading}
                   type='submit'
                   className='w-full'
+                  onClick={deleteToken}
                 />
               </div>
             ) : null}

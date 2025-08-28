@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import BaseDeleteModal from './BaseDeleteModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser, removeUserForce } from '@redux/slice/userSlice';
+import BaseAlertModal from './BaseAlertModal';
+import { editReviewApproval } from '@redux/slice/reviewSlice';
 import { successToast } from '@utils/toastUtil';
 
-const DeleteUser = ({ onClose, open }) => {
+const ApprovalChangeModal = ({ onClose, open }) => {
   const dispatch = useDispatch();
   const [modalLoader, setModalLoader] = useState(false);
-  const { selectedUser } = useSelector(state => state.users);
+  const { selectedItem } = useSelector(state => state.reviews);
   async function onSubmit() {
     setModalLoader(true);
     try {
-      await dispatch(removeUser(selectedUser.userId)).unwrap();
-      successToast('User deleted successfully');
-      dispatch(removeUserForce(selectedUser.userId));
+      await dispatch(editReviewApproval(selectedItem._id)).unwrap();
+      successToast('Approval status changed successfully');
       onClose();
     } catch (error) {
       console.error(error);
@@ -22,15 +21,15 @@ const DeleteUser = ({ onClose, open }) => {
     }
   }
   return (
-    <BaseDeleteModal
+    <BaseAlertModal
       open={open}
       onClose={onClose}
       onSubmit={onSubmit}
       isLoading={modalLoader}
-      title={'Delete User!'}
-      message='Are you sure you want to delete this user?'
+      title={'Change Approval Status'}
+      message='Are you sure you want to change the approval status?'
     />
   );
 };
 
-export default DeleteUser;
+export default ApprovalChangeModal;

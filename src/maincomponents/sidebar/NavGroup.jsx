@@ -21,8 +21,8 @@ import {
   DropdownMenuTrigger
 } from '@maincomponents/components/ui/dropdown-menu';
 import { storeInLocalStorage } from '@utils/localstorageutil';
-import CONSTANTS, { MANAGER_PROHIBBETED_ROUTES } from '@data/Constants';
 import { useSelector } from 'react-redux';
+import CONSTANTS from '@data/Constants';
 
 export function NavGroup({ title, items }) {
   const { data } = useSelector(state => state.auth);

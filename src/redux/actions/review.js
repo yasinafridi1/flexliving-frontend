@@ -2,7 +2,7 @@ import api from '@utils/axiosInstance';
 
 export const getAllReviews = params => {
   const query = new URLSearchParams();
-  if(params){
+  if (params) {
     if (params.page) {
       query.append('page', params.page);
     }
@@ -21,20 +21,18 @@ export const getAllReviews = params => {
       query.append('maxRating', params.maxRating);
     }
 
-     if (params.approved) {
+    if (params.approved) {
       query.append('approved', params.approved);
     }
 
-     if (Array.isArray(params.channel)) {
-      params.channel.forEach(channel => {
+    if (Array.isArray(params.channels)) {
+      params.channels.forEach(channel => {
         query.append('channel', channel);
       });
     }
 
-
-    return api.get(`/review?${query.toString()}`);
+    return api.get(`/reviews?${query.toString()}`);
   }
-}
+};
 
-export const updateStatus = (id) => api.patch(`/review/${id}`);
-
+export const updateStatus = id => api.patch(`/reviews/${id}`);
