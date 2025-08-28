@@ -1,12 +1,11 @@
 import { CATEGORY_COLOR, HOSTAWAY_CHANNEL_MAP, STATUS_COLOR } from '@data/Constants';
+import NoSyncCard from '@maincomponents/Cards/NoSyncCard';
 import { Badge } from '@maincomponents/components/ui/badge';
 import { Button } from '@maincomponents/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@maincomponents/components/ui/card';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger
 } from '@maincomponents/components/ui/dropdown-menu';
@@ -24,11 +23,10 @@ import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '
 import api from '@utils/axiosInstance';
 import debounce from '@utils/debouncer';
 import { successToast } from '@utils/toastUtil';
-import { set } from 'date-fns';
-import { Ellipsis, PenLine, Star, Trash } from 'lucide-react';
+
+import { Ellipsis, PenLine, Star } from 'lucide-react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 const columnHelper = createColumnHelper();
 
@@ -264,22 +262,7 @@ const Review = () => {
           <p className='text-muted-foreground'>Manage your reviews here</p>
         </div>
         {!userData?.clientId || !userData?.hostAwayConnection ? (
-          <Card className={'mt-4'}>
-            <CardHeader>
-              <CardTitle>
-                <h1 className='text-red-500'>OOPs! Hostway not connected</h1>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>
-                Looks like you have not added hostaway keys or connected to hostaway. Please go to integration page and
-                add your hostaway keys and connect to hostaway to manage your reviews or{' '}
-                <Link to='/integration' className='font-semibold text-blue-600 hover:underline'>
-                  Click here
-                </Link>
-              </CardDescription>
-            </CardContent>
-          </Card>
+          <NoSyncCard />
         ) : (
           <div className='mt-2'>
             {sycncLoading ? (
