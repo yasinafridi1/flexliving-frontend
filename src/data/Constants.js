@@ -1,7 +1,7 @@
 const CONSTANTS = {
   ACCESS_TOKEN: 'acc_tk',
   REFRESH_TOKEN: 'ref_tk',
-  LOCATION: 'route_history',
+  LOCATION: 'flex_route_history',
   SIDEBAR_STATE: 'sidebar_state',
   SIDEBAR_STATE_AGE: 60 * 60 * 24 * 7,
   SIDEBAR_WIDTH: '16rem',
